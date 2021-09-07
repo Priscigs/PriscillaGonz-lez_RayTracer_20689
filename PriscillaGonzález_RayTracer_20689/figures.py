@@ -21,9 +21,9 @@ class Sphere(object):
 
         # P = O + t * D
 
-        L = np.subtract(self.center, orig)
-        #L = resta(self.center, orig)
-        
+        #L = np.subtract(self.center, orig)
+        L = resta2(self.center, orig)
+       
         l = np.linalg.norm(L)
         #l = normalized(L)
 

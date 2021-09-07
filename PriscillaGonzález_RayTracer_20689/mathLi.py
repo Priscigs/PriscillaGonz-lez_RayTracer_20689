@@ -15,6 +15,19 @@ def resta (x, y):
     c = x[0] - y[0], x[1] * y[1], x[2] * y[2]
     return c
 
+# Otro método de resta, funcional para ray tracer
+def resta2(x, y):
+    rowsX = len(x)
+    rowsY = len(y)
+    res = []
+
+    if rowsX != rowsY:
+        return "Error"
+    else:
+        for i in range(rowsX):
+            res.append(x[i]-y[i])
+        return res
+
 # Multiplicación de matrices con un escalar
 def mul(x, matrix):
     rows = len(matrix)
@@ -43,7 +56,6 @@ def punto (x, y):
 # Normalizar una matriz
 def normalized (x):
     c = x[0] ** 2 + x[1] ** 2 + x[2] ** 2
-    #c = c * 1.0
 
     if c >= 0:
         p = c
