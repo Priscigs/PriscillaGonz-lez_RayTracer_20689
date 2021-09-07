@@ -170,7 +170,7 @@ class Raytracer(object):
                 #La camara siempre esta viendo hacia -Z
                 direction = V3(Px, Py, -1)
                 direction = direction / np.linalg.norm(direction)
-               # direction = normalized(direction)
+               #direction = normalized(direction)
 
                 self.glPoint(x,y, self.cast_ray(self.camPosition, direction))
 

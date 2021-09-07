@@ -14,7 +14,6 @@ button = Material(diffuse = _color(1,0,0))
 eyes = Material(diffuse = _color(0.8,0.8,0.8))
 pupil = Material(diffuse = _color(0,0,0))
 
-
 rtx = Raytracer(width,height)
 
 # Cuerpo
