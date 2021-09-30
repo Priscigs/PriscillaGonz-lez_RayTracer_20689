@@ -1,5 +1,8 @@
 # Carga un archivo OBJ
 import struct
+import numpy as np
+from numpy import arccos, arctan2
+from mathLi import *
 
 def _color(r, g, b):
     return bytes([ int(b * 255), int(g* 255), int(r* 255)])
@@ -62,7 +65,7 @@ class Texture(object):
                     g = ord(image.read(1)) / 255
                     r = ord(image.read(1)) / 255
 
-                    self.pixels[y].append( _color(r,g,b) )
+                    self.pixels[y].append( (r,g,b) )
 
 
     def getColor(self, tx, ty):
@@ -71,4 +74,45 @@ class Texture(object):
             y = int(ty * self.height)
             return self.pixels[y][x]
         else:
-            return _color(0,0,0)
+            return (0,0,0)
+
+
+class EnvMap(object):
+    def __init__(self, filename):
+        self.filename = filename
+        self.read()
+
+
+    def read(self):
+        with open(self.filename, "rb") as image:
+            image.seek(10)
+            headerSize = struct.unpack('=l', image.read(4))[0]
+
+            image.seek(14 + 4)
+            self.width = struct.unpack('=l', image.read(4))[0]
+            self.height = struct.unpack('=l', image.read(4))[0]
+
+            image.seek(headerSize)
+
+            self.pixels = []
+
+            for y in range(self.height):
+                self.pixels.append([])
+                for x in range(self.width):
+                    b = ord(image.read(1)) / 255
+                    g = ord(image.read(1)) / 255
+                    r = ord(image.read(1)) / 255
+
+                    self.pixels[y].append( (r,g,b) )
+
+
+    def getColor(self, dir):
+
+        dir = dir / np.linalg.norm(dir)
+        #dir = normalized(dir)
+
+        x = int((arctan2( dir[2], dir[0]) / (2 * pi()) ) * self.width )
+        y = int(arccos(-dir[1]) / np.pi * self.height)
+
+        return self.pixels[y][x]
+        

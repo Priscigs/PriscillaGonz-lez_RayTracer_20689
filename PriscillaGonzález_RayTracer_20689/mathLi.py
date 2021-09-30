@@ -6,8 +6,6 @@
 import struct
 from collections import namedtuple
 
-from obj import Obj
-
 V3 = namedtuple('Point3', ['x', 'y', 'z'])
 
 # Resta de matrices
@@ -26,6 +24,19 @@ def resta2(x, y):
     else:
         for i in range(rowsX):
             res.append(x[i]-y[i])
+        return res
+
+# Otro método de resta, funcional para ray tracer
+def suma(x, y):
+    rowsX = len(x)
+    rowsY = len(y)
+    res = []
+
+    if rowsX != rowsY:
+        return "Error"
+    else:
+        for i in range(rowsX):
+            res.append(x[i]+y[i])
         return res
 
 # Multiplicación de matrices con un escalar
@@ -186,3 +197,5 @@ def MM(a,b):
         c.append(temp)
 
     return c
+
+

@@ -35,6 +35,10 @@
     </Compile>
     <Compile Include="PriscillaGonzález_RayTracer_20689.py" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="envMap2.bmp" />
+    <Content Include="output.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in
